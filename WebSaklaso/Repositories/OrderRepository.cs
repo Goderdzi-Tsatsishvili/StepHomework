@@ -1,0 +1,16 @@
+﻿using Microsoft.EntityFrameworkCore;
+using WebSaklaso.Data;
+using WebSaklaso.Entities;
+using WebSaklaso.Repositories.Contracts;
+using WebSaklaso.Repositories.GenericRepo;
+
+namespace WebSaklaso.Repositories
+{
+    public class OrderRepository : GenericRepo<Order, AppDbContext>, IOrderRepository
+    {
+        public OrderRepository(AppDbContext db) : base(db)
+        {
+            
+        }
+    }
+}
