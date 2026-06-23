@@ -9,6 +9,7 @@ using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
 using System.Text;
 using WebSaklaso.Data;
+using WebSaklaso.Jobs;
 using WebSaklaso.Mapping;
 using WebSaklaso.Middleware;
 using WebSaklaso.Models.Auth;
@@ -96,6 +97,12 @@ namespace WebSaklaso
 
             builder.Services.AddSingleton(config);
             builder.Services.AddScoped<IMapper, ServiceMapper>();
+
+            //Background Services
+            builder.Services.AddHostedService<RefreshTokenCleanupService>();
+            builder.Services.AddHostedService<OrderStatusSyncService>();
+            builder.Services.AddHostedService<LowStockAlertService>();
+            builder.Services.AddHostedService<InactiveUserAlertService>();
 
             //Identity
             builder.Services.AddIdentity<AppUser, IdentityRole>(options =>

@@ -125,7 +125,6 @@ namespace WebSaklaso.Service
             if (!isValid)
                 throw new Exception("Username or Password is incorrect");
 
-
             var roles = await _userManager.GetRolesAsync(user);
 
             return await GenerateTokenPairAsync(user, roles);

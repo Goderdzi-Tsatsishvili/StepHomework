@@ -31,7 +31,7 @@ namespace WebSaklaso.Entities
         public string PhoneNumber { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime LastLoginDate { get; set; } = DateTime.UtcNow;
+        public DateTime? LastLoginDate { get; set; } = DateTime.UtcNow;
 
         //Navigation
         public ICollection<Order> Orders { get; set; }
