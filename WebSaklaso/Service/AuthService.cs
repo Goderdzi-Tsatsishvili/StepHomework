@@ -117,8 +117,8 @@ namespace WebSaklaso.Service
             if (user == null)
                 throw new BadRequestException("User with provided credentials not found");
 
-            if (!user.LockoutEnabled)
-                throw new Exception("Unable to sign in with locked account");
+            if (!user.EmailConfirmed)
+                throw new Exception("Unable to sign in with locked account, please activate your account first");
 
             bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
 
@@ -131,7 +131,6 @@ namespace WebSaklaso.Service
         }
 
         //Helper methods
-
         private async Task<LoginResponseDto> GenerateTokenPairAsync(AppUser user, IList<string> roles)
         {
             var accessToken = _jwtTokenGenerator.GenerateJwtToken(user, roles);

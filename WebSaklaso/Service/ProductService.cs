@@ -166,6 +166,8 @@ namespace WebSaklaso.Service
 
             return MapToPagedResponse(products, parameters);
         }
+
+        //Helper Methods
         private async Task<bool> CategoryExists(Guid categoryId)
             => await categoryRepo.ExistsAsync(c => c.Id == categoryId);
 

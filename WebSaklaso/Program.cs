@@ -28,6 +28,21 @@ namespace WebSaklaso
 
             builder.Services.AddControllers();
 
+            //CORS
+            var AllowSpecificOrigins = "_allowSpecificOrigins";
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: AllowSpecificOrigins,
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:5173")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
+            //Swagger
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
