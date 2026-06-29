@@ -43,7 +43,7 @@ namespace WebSaklaso.Tests
         }
 
         [Fact]
-        public async Task CreateSupplierAsync_WhenNameExceeds50Chars_ThrowBadRequestException()
+        public async Task CreateSupplierAsync_WhenNameExceeds100Chars_ThrowBadRequestException()
         {
             //ARRANGE
             var model = new SupplierForCreatingDto() { SupplierName = new string('A', 101) };
@@ -57,6 +57,7 @@ namespace WebSaklaso.Tests
                 .WithMessage("*exceed 100*");
         }
 
+        [Fact]
         public async Task CreateSupplierAsync_WhenNameIsExactly100Chars_DoesNotThrow()
         {
             //ARRANGE
